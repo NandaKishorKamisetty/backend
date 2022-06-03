@@ -8,7 +8,8 @@ var logger = require('morgan');
 
 var app = express();
 require('dotenv').config()
-
+var cors = require('cors');
+app.use(cors());
 //database connection
 const dburl=process.env.DB_URL
 
@@ -20,9 +21,9 @@ if(err){
   console.log("error in databaase connection",err.message)
 }
 else{
-const dbObj=client.db('mockdata')
+const dbObj=client.db('code-for-good')
 app.set('databaseObject',dbObj)
-console.log('database is c0nnected')
+console.log('database is connected')
 }
 
 
@@ -32,10 +33,10 @@ console.log('database is c0nnected')
 
 //importing and using apis
 var loginApi=require('./routes/login')
-app.use('/login',loginApi)
+app.use('/auth',loginApi)
 
 var signupApi =require('./routes/signup')
-app.use('/signup',signupApi)
+app.use('/auth',signupApi)
 
 
 
@@ -69,6 +70,11 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+
+app.listen(5000, () => {
+  console.log("Listening on port 5000");
 });
 
 module.exports = app;
