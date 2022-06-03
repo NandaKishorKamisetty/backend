@@ -1,4 +1,4 @@
 To start the node js server 
-    node app.js 
+    run node app.js 
 
 The port 5000 will be used to run the server.
