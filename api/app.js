@@ -20,7 +20,7 @@ if(err){
   console.log("error in databaase connection",err.message)
 }
 else{
-const dbObj=client.db('sample')
+const dbObj=client.db('mockdata')
 app.set('databaseObject',dbObj)
 console.log('database is c0nnected')
 }
